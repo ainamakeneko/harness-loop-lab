@@ -1,0 +1,108 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, sans-serif;
+  color: #172554;
+  background: #eef2ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  width: min(100%, 32rem);
+  padding: clamp(1.25rem, 5vw, 2.5rem);
+  border-radius: 1.25rem;
+  background: white;
+  box-shadow: 0 1rem 3rem rgb(49 46 129 / 15%);
+}
+
+.eyebrow {
+  margin: 0;
+  color: #4f46e5;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0.3rem 0;
+  font-size: clamp(2rem, 10vw, 3rem);
+}
+
+.intro {
+  margin: 0 0 1.5rem;
+  color: #475569;
+}
+
+label {
+  display: block;
+  margin: 1rem 0 0.4rem;
+  font-weight: 700;
+}
+
+input,
+button {
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 0.65rem;
+  font: inherit;
+}
+
+input {
+  padding: 0.65rem 0.8rem;
+  border: 2px solid #cbd5e1;
+}
+
+input:focus {
+  border-color: #4f46e5;
+  outline: 3px solid #c7d2fe;
+}
+
+button {
+  margin-top: 0.5rem;
+  border: 0;
+  background: #4338ca;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3730a3;
+}
+
+.error {
+  min-height: 1.5rem;
+  margin: 0.75rem 0 0;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.result {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border: 2px solid #818cf8;
+  border-radius: 0.8rem;
+  background: #eef2ff;
+  text-align: center;
+}
+
+.result p {
+  margin: 0 0 0.25rem;
+  color: #475569;
+}
+
+.result strong {
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
