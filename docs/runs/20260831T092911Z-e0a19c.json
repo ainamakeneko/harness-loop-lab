@@ -1,0 +1,13 @@
+{
+  "run_id": "20260831T092911Z-e0a19c",
+  "started_at": "2026-08-31T09:29:11.860570+00:00",
+  "finished_at": "2026-08-31T09:31:23.648848+00:00",
+  "status": "finished",
+  "events": [
+    {
+      "at": "2026-08-31T09:30:50.297397+00:00",
+      "kind": "verification_failure",
+      "detail": "Initial node test run failed because app.js accessed document at module scope; guarded browser-only setup before rerunning."
+    }
+  ]
+}

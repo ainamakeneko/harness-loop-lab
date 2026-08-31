@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Decision Coin</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="card">
+      <p class="eyebrow">Two good choices. One quick answer.</p>
+      <h1>Decision Coin</h1>
+      <p class="intro">Enter your options and let the coin decide.</p>
+
+      <form id="decision-form" novalidate>
+        <label for="option-a">Option A</label>
+        <input id="option-a" name="option-a" type="text" autocomplete="off">
+
+        <label for="option-b">Option B</label>
+        <input id="option-b" name="option-b" type="text" autocomplete="off">
+
+        <p id="error" class="error" role="alert" aria-live="polite"></p>
+        <button type="submit">Choose for me</button>
+      </form>
+
+      <section id="result" class="result" aria-live="polite" hidden>
+        <p>The coin chose</p>
+        <strong id="chosen-option"></strong>
+      </section>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
