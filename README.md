@@ -1,25 +1,63 @@
-# Harness Loop Lab
+# Monthly activity report experiment
 
-Failure-driven harness experiment for AI coding agents.
+This repository contains a small, dependency-free experiment for replacing one
+piece of manual monthly reporting: adding together activity counts. It does not
+try to replace how staff collect, review, or publish their report.
 
-The outer loop is:
+## Assumptions and input
 
-`TASK -> agent work -> verification -> postmortem -> harness proposal -> human approval -> harness update -> next TASK`
+No organization-specific source format was provided. The experiment assumes
+staff can export or paste their observations into a CSV file with exactly these
+columns:
 
-## Start a run
+```csv
+date,activity,count
+2026-07-01,Phone calls,4
+2026-07-15,Phone calls,3
+2026-07-15,Site visits,2
+```
 
-1. Put one real task in `TASK.md`.
-2. Ask the coding agent:
+Dates use `YYYY-MM-DD`; activity names must be consistent; and counts are
+non-negative whole numbers. A spreadsheet can save this format as CSV. Keep the
+original file so a person can spot-check the result. The organization still
+needs to confirm that these fields, whole-number counts, and sum-by-activity are
+appropriate for its real report.
 
-   `Read skills/harness-run/SKILL.md and execute TASK.md exactly as described.`
+## Produce a report
 
-3. The agent must implement, verify, record evidence, and complete the post-task harness review.
-4. Durable harness changes are proposed under `docs/proposals/`; they are not silently applied.
-5. Change a proposal to `Status: APPROVED` only when you accept it.
-6. Then ask:
+With Node.js installed, run:
 
-   `Read skills/harness-improve/SKILL.md and apply all APPROVED proposals.`
+```sh
+node monthly-report.js observations.csv 2026-07 > report-2026-07.csv
+```
 
-## Smartphone use
+The output is a spreadsheet-compatible CSV with one total per activity:
 
-The phone is only the control surface. The coding agent/runtime should run in the cloud with repository access and a shell for tests. See `SMARTPHONE.md`.
+```csv
+month,activity,total
+2026-07,Phone calls,7
+2026-07,Site visits,2
+```
+
+Invalid rows stop the command with a line-specific error rather than producing
+a possibly misleading total. Rows outside the requested month are ignored.
+
+## Smallest real-world test
+
+For one reporting period, one staff member should keep using the current method
+and also run this command on a copy of the same observations. Record:
+
+1. minutes spent preparing and checking each result;
+2. disagreements in totals, resolved against the source observations; and
+3. any rows that could not be represented without editing their meaning.
+
+Adopt or extend the workflow only if the CSV result has correct totals, needs
+less staff time, and does not omit required report information. Treat any wrong
+total, unrepresentable required data, or no meaningful time saving as failure.
+This reversible trial is smaller and safer than building an application,
+database, accounts, or a new collection process before the actual inputs and
+report requirements are known.
+
+## Development
+
+Run all configured checks with `bash scripts/verify.sh`.
