@@ -3,29 +3,37 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Decision Coin</title>
+    <title>Work Timer</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="card">
-      <p class="eyebrow">Two good choices. One quick answer.</p>
-      <h1>Decision Coin</h1>
-      <p class="intro">Enter your options and let the coin decide.</p>
+      <p class="eyebrow">Focus, one session at a time</p>
+      <h1>Work Timer</h1>
+      <p class="intro">Name what you are working on, then record the time you spend.</p>
 
-      <form id="decision-form" novalidate>
-        <label for="option-a">Option A</label>
-        <input id="option-a" name="option-a" type="text" autocomplete="off">
-
-        <label for="option-b">Option B</label>
-        <input id="option-b" name="option-b" type="text" autocomplete="off">
-
+      <form id="timer-form" novalidate>
+        <label for="task-name">Task name</label>
+        <input id="task-name" name="task-name" type="text" autocomplete="off" placeholder="e.g. Draft project outline">
         <p id="error" class="error" role="alert" aria-live="polite"></p>
-        <button type="submit">Choose for me</button>
+        <div class="actions">
+          <button id="start-button" type="submit">Start session</button>
+          <button id="stop-button" class="stop" type="button" disabled>Stop session</button>
+        </div>
       </form>
 
-      <section id="result" class="result" aria-live="polite" hidden>
-        <p>The coin chose</p>
-        <strong id="chosen-option"></strong>
+      <section id="active-session" class="active" aria-live="polite" hidden>
+        <span class="pulse" aria-hidden="true"></span>
+        <div><small>Session in progress</small><strong id="active-task"></strong></div>
+      </section>
+
+      <section class="summary" aria-labelledby="sessions-heading">
+        <div class="summary-heading">
+          <h2 id="sessions-heading">Completed sessions</h2>
+          <p>Total <strong id="total-duration">0 sec</strong></p>
+        </div>
+        <p id="empty-list" class="empty">Your completed work sessions will appear here.</p>
+        <ol id="session-list" class="sessions"></ol>
       </section>
     </main>
     <script type="module" src="app.js"></script>
