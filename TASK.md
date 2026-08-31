@@ -1,23 +1,43 @@
 # TASK
 
 ## Objective
-Build the first small application in this repository: a single-page "Decision Coin" web app that helps a user choose between two options.
+Build the second small application in this repository: a single-page "Work Timer" web app for recording short work sessions and seeing a simple summary.
+
+This is Experiment 2 for the harness. Preserve evidence of mistakes, interventions, verification failures, and unnecessary wandering so the mandatory post-task review can assess whether any durable harness improvement is justified.
 
 ## User-visible outcome
-A user can enter Option A and Option B, press a button, and see one of the two options selected. The page should work well on a smartphone.
+A user can name a task, start a work session, stop it, and immediately see the completed session in a list with its duration. The page also shows the total recorded work time. It should remain usable on a smartphone.
 
 ## Acceptance criteria
-- [ ] Two text inputs accept Option A and Option B.
-- [ ] The choose button does not produce a result while either input is empty; the UI explains what is missing.
-- [ ] With both options present, pressing the button displays exactly one of the entered options.
-- [ ] A user can run another choice without reloading the page.
-- [ ] The result is visually distinguishable from the inputs.
-- [ ] The app is usable on a narrow mobile viewport.
-- [ ] Automated tests cover the selection logic and the empty-input failure case.
+- [ ] A text input accepts a task name.
+- [ ] Starting a session with an empty or whitespace-only task name is rejected and the UI explains what is missing.
+- [ ] Starting a valid session records its start time and makes the active session clearly visible.
+- [ ] While a session is active, starting another session is prevented.
+- [ ] Stopping the active session creates exactly one completed record containing the entered task name and a non-negative duration.
+- [ ] A user can record multiple sessions without reloading the page.
+- [ ] The completed-session list is shown in most-recent-first order.
+- [ ] The page shows the total duration of all completed sessions and updates it after each completed session.
+- [ ] Duration formatting is understandable to a normal user; sub-minute sessions must still display meaningfully rather than appearing blank.
+- [ ] The app remains usable on a narrow mobile viewport.
+- [ ] Automated tests cover the core state transitions: invalid start, valid start, prevention of a second simultaneous start, stop, multiple completed sessions, and total-duration calculation.
 - [ ] Repository verification passes.
 
 ## Technical freedom
-Choose the smallest reasonable implementation and toolchain. Do not add a framework merely because one is familiar. The task is intentionally small so the experiment can observe how the agent chooses structure and verification.
+Use the smallest reasonable implementation and toolchain. Reuse existing project structure where it helps, but do not preserve previous application behavior merely for compatibility with Experiment 1. Avoid adding dependencies unless they materially simplify reliable implementation or verification.
+
+Time-dependent logic should be designed so automated tests can exercise it deterministically without real waiting.
+
+## Experiment constraints
+- Do not modify permanent harness rules merely to anticipate possible failures.
+- If an implementation or verification failure occurs, record it through the existing harness cycle as required by `skills/harness-run/SKILL.md`.
+- Complete the mandatory post-task review.
+- Create a proposal under `docs/proposals/` only if evidence from this run justifies a durable harness change.
 
 ## Out of scope
-- Accounts, persistence, analytics, backend services, databases, deployment infrastructure, animations, or broad design systems.
+- Accounts or authentication.
+- Backend services or databases.
+- Cloud synchronization.
+- Cross-device persistence.
+- Billing, analytics, notifications, or deployment infrastructure.
+- Complex project/task management features.
+- Editing historical records.
