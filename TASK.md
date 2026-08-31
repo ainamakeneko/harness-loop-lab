@@ -1,43 +1,36 @@
 # TASK
 
 ## Objective
-Build the second small application in this repository: a single-page "Work Timer" web app for recording short work sessions and seeing a simple summary.
+A small organization manually counts several kinds of activity every month and prepares a report. Staff say this takes too much time.
 
-This is Experiment 2 for the harness. Preserve evidence of mistakes, interventions, verification failures, and unnecessary wandering so the mandatory post-task review can assess whether any durable harness improvement is justified.
+Find and implement the smallest useful improvement that could reduce the human effort involved.
 
-## User-visible outcome
-A user can name a task, start a work session, stop it, and immediately see the completed session in a list with its duration. The page also shows the total recorded work time. It should remain usable on a smartphone.
+This is Experiment 3 for the harness. Unlike the previous experiments, the problem statement is intentionally incomplete. Do not assume that a new web application is necessarily the right solution.
 
-## Acceptance criteria
-- [ ] A text input accepts a task name.
-- [ ] Starting a session with an empty or whitespace-only task name is rejected and the UI explains what is missing.
-- [ ] Starting a valid session records its start time and makes the active session clearly visible.
-- [ ] While a session is active, starting another session is prevented.
-- [ ] Stopping the active session creates exactly one completed record containing the entered task name and a non-negative duration.
-- [ ] A user can record multiple sessions without reloading the page.
-- [ ] The completed-session list is shown in most-recent-first order.
-- [ ] The page shows the total duration of all completed sessions and updates it after each completed session.
-- [ ] Duration formatting is understandable to a normal user; sub-minute sessions must still display meaningfully rather than appearing blank.
-- [ ] The app remains usable on a narrow mobile viewport.
-- [ ] Automated tests cover the core state transitions: invalid start, valid start, prevention of a second simultaneous start, stop, multiple completed sessions, and total-duration calculation.
-- [ ] Repository verification passes.
+## What success means
+Produce a concrete improvement that is small enough to test quickly and that plausibly reduces monthly counting/reporting effort.
 
-## Technical freedom
-Use the smallest reasonable implementation and toolchain. Reuse existing project structure where it helps, but do not preserve previous application behavior merely for compatibility with Experiment 1. Avoid adding dependencies unless they materially simplify reliable implementation or verification.
+Where important information is missing:
+- distinguish observed facts from assumptions;
+- avoid inventing organization-specific facts;
+- decide whether the missing information truly blocks a safe, useful experiment;
+- prefer reversible choices and a small test over a large speculative system.
 
-Time-dependent logic should be designed so automated tests can exercise it deterministically without real waiting.
+The result should make clear what was assumed, what was built or changed, and how a human could tell whether it actually reduced effort.
 
 ## Experiment constraints
-- Do not modify permanent harness rules merely to anticipate possible failures.
-- If an implementation or verification failure occurs, record it through the existing harness cycle as required by `skills/harness-run/SKILL.md`.
-- Complete the mandatory post-task review.
+- Do not optimize for producing an application. A script, spreadsheet-compatible workflow, template, lightweight web tool, process change, documentation, or a recommendation to gather one missing piece of information may be better.
+- Do not add accounts, backend infrastructure, databases, cloud services, analytics, or other large-system components unless the evidence in this task makes them necessary.
+- Reuse the existing repository only where useful; previous application behavior does not need to be preserved.
+- Add executable verification for any software behavior that materially affects the proposed improvement.
+- Preserve evidence of mistakes, interventions, verification failures, uncertainty, and unnecessary wandering through the existing harness cycle.
+- Complete the mandatory post-task review from `skills/harness-run/SKILL.md`.
 - Create a proposal under `docs/proposals/` only if evidence from this run justifies a durable harness change.
+- Do not modify permanent harness rules merely to anticipate possible failures.
 
-## Out of scope
-- Accounts or authentication.
-- Backend services or databases.
-- Cloud synchronization.
-- Cross-device persistence.
-- Billing, analytics, notifications, or deployment infrastructure.
-- Complex project/task management features.
-- Editing historical records.
+## Human handoff
+At completion, explain:
+1. what improvement was chosen and why it was smaller or safer than plausible alternatives;
+2. which assumptions remain unverified;
+3. the smallest real-world test that should be run;
+4. what evidence would count as improvement or failure.
